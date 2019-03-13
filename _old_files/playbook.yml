@@ -1,0 +1,75 @@
+---
+
+- hosts: localhost
+  gather_facts: no
+
+  vars:
+    jsondata: "{{ lookup('file','sample_topo.json')|from_json }}"
+    project_folder: "test_folder_name"
+    project_name: "test_proj_name"
+
+  tasks:
+      - name: device loop
+        set_fact:
+           Hostname: "{{item.Name}}"
+           DeviceID: "{{item.FakeID}}"
+           OS: "{{item.NodeType}}"
+           namespace: "{{item.TopologyID}}"
+        with_items: "{{ jsondata['Routers'] }}"
+#        with_items: "{{ jsondata['Routers'] }}"
+        register: deviceinfo
+
+
+#///some, some kinda jinja templating and export to file for hostvar/inventory
+
+#///link loop when DeviceID == DeviceID
+
+#      - name: link loop
+#        set_fact:
+#           src_int: "{{item.Source}}"
+#           dest_int: "{{item.Target}}"
+#           namespace: "{{item.TopologyID}}"
+#        with_items: "{{ jsondata['Links'] }}"
+#
+#///some, some kinda jinja templating and export to file for hostvars, maybe add line to file
+#
+#
+#      - name:  Print Fact
+#        debug:
+#          msg: info
+#        with_items: "{{ jsondata['Routers'] }}"
+#        register: output
+
+
+
+
+#///////////////////////////////////////////////////////////////////
+
+#tasks:
+#  - name: Print phone records
+#    debug: msg="User {{ item.key }} is {{ item.value.name }}
+#                     ({{ item.value.telephone }})"
+#    with_dict: users
+
+
+
+#      - name: Create Fact List
+#        set_fact:
+#            dict_out: "{{ info.results | list }}"
+#    #         dict_out: "{{ info.results | map(attribute='ansible_facts.app_item') | list }}"
+#
+#      - name:  Print Fact
+#        debug: var=dict_out
+
+#      - name: Saving backup config
+#        copy: content="{{ dict_out }}" dest= "{{Hostname}}"
+
+#      - name: Print results
+#        debug:
+#          msg: "{{info}}"
+
+#  - name: Print dict output
+#    debug:
+#      msg: "User {{ item.key }} is {{ item.value.name }} ({{ item.value.telephone }})"
+#    loop: "{{ lookup('dict', users) }}"
+#

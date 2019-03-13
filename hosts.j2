@@ -1,0 +1,41 @@
+[nxos]
+{% for item in jsondata.Routers %}
+{% for i in jsonmetadata.hosts %}
+{% if item.NodeType is equalto "nxosv" and i.hostname == item.Name %}
+{{item.Name}} ansible_host={{i.ip}}
+{% endif %}
+{% endfor %}
+{% endfor %}
+
+{% for i in jsonmetadata.hosts  %}
+{% if i.os is equalto "nxosv" and loop.changed(false) %}
+[nxos:vars]
+ansible_user= {{i.username }}
+ansible_ssh_pass= {{i.password }}
+host_key_checking= false
+StrictHostKeyChecking= false
+ansible_connection= network_cli
+ansible_network_os=nxos
+{% endif %}
+{% endfor %}
+
+[ios]
+{% for item in jsondata.Routers %}
+{% for i in jsonmetadata.hosts %}
+{%if item.NodeType is equalto "csr" and i.hostname == item.Name %}
+{{item.Name}} ansible_host= {{i.ip}}
+{% endif %}
+{% endfor %}
+{% endfor %}
+
+{% for i in jsonmetadata.hosts %}
+{% if i.os is equalto "csr" and loop.changed(false) %}
+[ios:vars]
+ansible_user= {{i.username}}
+ansible_ssh_pass= {{i.password}}
+host_key_checking= false
+StrictHostKeyChecking= false
+ansible_connection= network_cli
+ansible_network_os=ios
+{% endif %}
+{% endfor %}

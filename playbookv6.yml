@@ -1,0 +1,84 @@
+---
+- hosts: all
+  gather_facts: no
+
+  vars:
+    jsondata: "{{ lookup('file','sample_topo.json')|from_json }}"
+    jsonmetadata: "{{ lookup('file','sample_metadata.json')|from_json }}"
+    project_name: "test_project_name"
+    project_directory: "/some_project_folder"
+    inventory_template_src: "/Users/josesanchez/Qsync/OSI/NetworkCI/json_dict/hosts.j2"
+    inventory_template_dest: "/Users/josesanchez/Qsync/OSI/NetworkCI/json_dict/test_host2.ini"
+
+  tasks:
+
+##///create destination project directory
+
+##///flip json to dicts and lists
+      - name: Iterate Json -  Device
+        set_fact:
+          name_item: "{{item.Name}}"
+          os_item:  "{{item.NodeType}}"
+          id_item: "{{item.FakeID}}"
+        loop: "{{jsondata.Routers}}"
+        register: device_results
+
+      - name: Create Fact List - Device
+        set_fact:
+          name: "{{ device_results.results | map(attribute='ansible_facts.name_item') | list }}"
+          os: "{{ device_results.results | map(attribute='ansible_facts.os_item') | list }}"
+          Did: "{{ device_results.results | map(attribute='ansible_facts.id_item') | list }}"
+
+    ##  - name: Verify vars - Device
+    ##    debug: var=name ###or whatever
+
+      - name: Iterate Json -  Links
+        set_fact:
+          src_item: "{{item.Source}}"
+          dest_item:  "{{item.Target}}"
+          id_item: "{{item.FakeID}}"
+        loop: "{{jsondata.Links}}"
+        register: link_results
+
+      - name: Create Fact List - Links
+        set_fact:
+          src: "{{ link_results.results | map(attribute='ansible_facts.src_item') | list }}"
+          dest: "{{ link_results.results | map(attribute='ansible_facts.dest_item') | list }}"
+          Lid: "{{ link_results.results | map(attribute='ansible_facts.id_item') | list }}"
+
+    ##  - name: Verify vars - Links
+    ##    debug: var=name ###or whatever
+
+      - name: Iterate Json -  Metadata
+        set_fact:
+          mname_item: "{{item.hostname}}"
+          mip_item:  "{{item.ip}}"
+          mos_item: "{{item.os}}"
+          musername_item: "{{item.username}}"
+          mpassword_item: "{{item.password}}"
+        loop: "{{jsonmetadata.hosts}}"
+        register: meta_results
+
+      - name: Create Fact List - Metadata
+        set_fact:
+          mname: "{{ meta_results.results | map(attribute='ansible_facts.mname_item') | list }}"
+          mip: "{{ meta_results.results | map(attribute='ansible_facts.mip_item') | list }}"
+          mos: "{{ meta_results.results | map(attribute='ansible_facts.mos_item') | list }}"
+          musername: "{{ meta_results.results | map(attribute='ansible_facts.musername_item') | list }}"
+          mpassword: "{{ meta_results.results | map(attribute='ansible_facts.mpassword_item') | list }}"
+
+      #- name: Verify vars - Metadata
+      #  debug: var=meta_results.results ###or whatever
+
+##///some kinda jinja templating for inventory file
+      - name: Generate template for hosts.ini
+        template: src={{inventory_template_src}} dest={{inventory_template_dest}}
+        delegate_to: localhost
+
+##///some kinda jinja templating for configuring interface descriptions
+#      - name: create local directory
+#        file:
+#          path: ./devices/{{ group_names[0] }}/{{ inventory_hostname }}
+#          state: directory
+
+##///some kinda jinja templating for hostvars, maybe add line to file
