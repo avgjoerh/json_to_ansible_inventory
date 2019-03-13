@@ -1,4 +1,4 @@
-[nxos]
+[nxosv]
 {% for item in jsondata.Routers %}
 {% for i in jsonmetadata.hosts %}
 {% if item.NodeType is equalto "nxosv" and i.hostname == item.Name %}
@@ -6,7 +6,6 @@
 {% endif %}
 {% endfor %}
 {% endfor %}
-
 {% for i in jsonmetadata.hosts  %}
 {% if i.os is equalto "nxosv" and loop.changed(false) %}
 [nxos:vars]
@@ -19,7 +18,7 @@ ansible_network_os=nxos
 {% endif %}
 {% endfor %}
 
-[ios]
+[csr]
 {% for item in jsondata.Routers %}
 {% for i in jsonmetadata.hosts %}
 {%if item.NodeType is equalto "csr" and i.hostname == item.Name %}
@@ -27,15 +26,150 @@ ansible_network_os=nxos
 {% endif %}
 {% endfor %}
 {% endfor %}
-
 {% for i in jsonmetadata.hosts %}
 {% if i.os is equalto "csr" and loop.changed(false) %}
-[ios:vars]
+[csr:vars]
 ansible_user= {{i.username}}
 ansible_ssh_pass= {{i.password}}
 host_key_checking= false
 StrictHostKeyChecking= false
 ansible_connection= network_cli
 ansible_network_os=ios
+{% endif %}
+{% endfor %}
+
+[xrv]
+{% for item in jsondata.Routers %}
+{% for i in jsonmetadata.hosts %}
+{%if item.NodeType is equalto "xrv" and i.hostname == item.Name %}
+{{item.Name}} ansible_host= {{i.ip}}
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% for i in jsonmetadata.hosts %}
+{% if i.os is equalto "xrv" and loop.changed(false) %}
+[xrv:vars]
+ansible_user= {{i.username}}
+ansible_ssh_pass= {{i.password}}
+host_key_checking= false
+StrictHostKeyChecking= false
+ansible_connection= network_cli
+ansible_network_os=ios
+{% endif %}
+{% endfor %}
+
+[eos]
+{% for item in jsondata.Routers %}
+{% for i in jsonmetadata.hosts %}
+{%if item.NodeType is equalto "eos" and i.hostname == item.Name %}
+{{item.Name}} ansible_host= {{i.ip}}
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% for i in jsonmetadata.hosts %}
+{% if i.os is equalto "eos" and loop.changed(false) %}
+[eos:vars]
+ansible_user= {{i.username}}
+ansible_ssh_pass= {{i.password}}
+host_key_checking= false
+StrictHostKeyChecking= false
+ansible_connection= network_cli
+ansible_network_os=ios
+{% endif %}
+{% endfor %}
+
+[cumulus]
+{% for item in jsondata.Routers %}
+{% for i in jsonmetadata.hosts %}
+{%if item.NodeType is equalto "cumulus" and i.hostname == item.Name %}
+{{item.Name}} ansible_host= {{i.ip}}
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% for i in jsonmetadata.hosts %}
+{% if i.os is equalto "cumulus" and loop.changed(false) %}
+[cumulus:vars]
+ansible_user= {{i.username}}
+ansible_ssh_pass= {{i.password}}
+host_key_checking= false
+StrictHostKeyChecking= false
+ansible_connection= local
+{% endif %}
+{% endfor %}
+
+[panos]
+{% for item in jsondata.Routers %}
+{% for i in jsonmetadata.hosts %}
+{%if item.NodeType is equalto "panos" and i.hostname == item.Name %}
+{{item.Name}} ansible_host= {{i.ip}}
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% for i in jsonmetadata.hosts %}
+{% if i.os is equalto "panos" and loop.changed(false) %}
+[panos:vars]
+ansible_user= {{i.username}}
+ansible_ssh_pass= {{i.password}}
+host_key_checking= false
+StrictHostKeyChecking= false
+ansible_connection= local
+{% endif %}
+{% endfor %}
+
+[traffic]
+{% for item in jsondata.Routers %}
+{% for i in jsonmetadata.hosts %}
+{%if item.NodeType is equalto "traffic" and i.hostname == item.Name %}
+{{item.Name}} ansible_host= {{i.ip}}
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% for i in jsonmetadata.hosts %}
+{% if i.os is equalto "traffic" and loop.changed(false) %}
+[traffic:vars]
+ansible_user= {{i.username}}
+ansible_ssh_pass= {{i.password}}
+host_key_checking= false
+StrictHostKeyChecking= false
+ansible_connection= local
+{% endif %}
+{% endfor %}
+
+[f5]
+{% for item in jsondata.Routers %}
+{% for i in jsonmetadata.hosts %}
+{%if item.NodeType is equalto "f5" and i.hostname == item.Name %}
+{{item.Name}} ansible_host= {{i.ip}}
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% for i in jsonmetadata.hosts %}
+{% if i.os is equalto "f5" and loop.changed(false) %}
+[f5:vars]
+ansible_user= {{i.username}}
+ansible_ssh_pass= {{i.password}}
+host_key_checking= false
+StrictHostKeyChecking= false
+ansible_connection= local
+{% endif %}
+{% endfor %}
+
+[asav]
+{% for item in jsondata.Routers %}
+{% for i in jsonmetadata.hosts %}
+{%if item.NodeType is equalto "asav" and i.hostname == item.Name %}
+{{item.Name}} ansible_host= {{i.ip}}
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% for i in jsonmetadata.hosts %}
+{% if i.os is equalto "asav" and loop.changed(false) %}
+[asav:vars]
+ansible_user= {{i.username}}
+ansible_ssh_pass= {{i.password}}
+host_key_checking= false
+StrictHostKeyChecking= false
+ansible_connection= network_cli
+ansible_network_os=asa
 {% endif %}
 {% endfor %}

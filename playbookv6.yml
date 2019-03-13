@@ -8,7 +8,7 @@
     project_name: "test_project_name"
     project_directory: "/some_project_folder"
     inventory_template_src: "/Users/josesanchez/Qsync/OSI/NetworkCI/json_dict/hosts.j2"
-    inventory_template_dest: "/Users/josesanchez/Qsync/OSI/NetworkCI/json_dict/test_host2.ini"
+    inventory_template_dest: "/Users/josesanchez/Qsync/OSI/NetworkCI/json_dict/test_host.ini"
 
   tasks:
 
