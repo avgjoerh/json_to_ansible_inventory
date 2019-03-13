@@ -9,6 +9,8 @@
     project_directory: "/some_project_folder"
     inventory_template_src: "/Users/josesanchez/Qsync/OSI/NetworkCI/json_dict/hosts.j2"
     inventory_template_dest: "/Users/josesanchez/Qsync/OSI/NetworkCI/json_dict/test_host.ini"
+    hostvar_template_src:
+    hostvar_template_dest:
 
   tasks:
 
@@ -30,7 +32,7 @@
           Did: "{{ device_results.results | map(attribute='ansible_facts.id_item') | list }}"
 
     ##  - name: Verify vars - Device
-    ##    debug: var=name ###or whatever
+    ##    debug: var=name ###or whatever for testing
 
       - name: Iterate Json -  Links
         set_fact:
@@ -47,7 +49,7 @@
           Lid: "{{ link_results.results | map(attribute='ansible_facts.id_item') | list }}"
 
     ##  - name: Verify vars - Links
-    ##    debug: var=name ###or whatever
+    ##    debug: var=name ###or whatever for testing
 
       - name: Iterate Json -  Metadata
         set_fact:
@@ -68,17 +70,25 @@
           mpassword: "{{ meta_results.results | map(attribute='ansible_facts.mpassword_item') | list }}"
 
       #- name: Verify vars - Metadata
-      #  debug: var=meta_results.results ###or whatever
+      #  debug: var=mname ###or whatever for testing
 
-##///some kinda jinja templating for inventory file
-      - name: Generate template for hosts.ini
+##///some kinda jinja templating to generate inventory file
+      - name: Generate Inventory File
         template: src={{inventory_template_src}} dest={{inventory_template_dest}}
         delegate_to: localhost
 
-##///some kinda jinja templating for configuring interface descriptions
-#      - name: create local directory
-#        file:
-#          path: ./devices/{{ group_names[0] }}/{{ inventory_hostname }}
-#          state: directory
+##///some kinda jinja templating to generate host_var files
+      - name: Creating directories
+        file:
+          path: ./{{item}}
+          state: directory
+        delegate_to: localhost
+        with_items:
+          - roles
+          - host_vars
 
-##///some kinda jinja templating for hostvars, maybe add line to file
+#      - name: Generate Host_Var files
+#        template: src={{hostvar_template_src}} dest={{hostvar_template_dest}}
+#        delegate_to: localhost
+
+##///some kinda jinja templating for configuring interface descriptions
