@@ -1,0 +1,27 @@
+---
+- hosts: nxosv:csr
+  gather_facts: false
+
+  tasks:
+      - name: csr1 config
+        cli_config:
+           config: "{{ lookup('file', 'csr1_config.cfg') }}"
+        when: inventory_hostname == "csr1"
+
+      - name: csr2 config
+        cli_config:
+           config: "{{ lookup('file', 'csr2_config.cfg') }}"
+        when: inventory_hostname == "csr2"
+
+      - name: nxosv1 config
+        ios_config:
+           src: ./nxos1_config
+        when: inventory_hostname == "nxosv1"
+
+      - name: nxosv2 config
+        ios_config:
+           src: ./nxos2_config
+        when: inventory_hostname == "nxosv2"
+
+      - name: debug
+        debug: msg={{inventory_hostname}}

@@ -9,8 +9,8 @@
 {% for i in jsonmetadata.hosts  %}
 {% if i.os is equalto "nxos" and loop.changed(true) %}
 [nxosv:vars]
-ansible_user= {{i.username }}
-ansible_ssh_pass= {{i.password }}
+ansible_user= admin
+ansible_ssh_pass= cisco.123
 host_key_checking= false
 StrictHostKeyChecking= false
 ansible_connection= network_cli
@@ -22,7 +22,7 @@ ansible_network_os=ios
 {% for item in jsondata.Routers %}
 {% for i in jsonmetadata.hosts %}
 {%if item.NodeType is equalto "csr" and i.hostname == item.Name %}
-{{item.Name}} ansible_host= {{i.ip}}
+{{item.Name}} ansible_host={{i.ip}}
 {% endif %}
 {% endfor %}
 {% endfor %}
@@ -42,7 +42,7 @@ ansible_network_os=ios
 {% for item in jsondata.Routers %}
 {% for i in jsonmetadata.hosts %}
 {%if item.NodeType is equalto "xrv" and i.hostname == item.Name %}
-{{item.Name}} ansible_host= {{i.ip}}
+{{item.Name}} ansible_host={{i.ip}}
 {% endif %}
 {% endfor %}
 {% endfor %}
@@ -62,7 +62,7 @@ ansible_network_os=ios
 {% for item in jsondata.Routers %}
 {% for i in jsonmetadata.hosts %}
 {%if item.NodeType is equalto "eos" and i.hostname == item.Name %}
-{{item.Name}} ansible_host= {{i.ip}}
+{{item.Name}} ansible_host={{i.ip}}
 {% endif %}
 {% endfor %}
 {% endfor %}
@@ -82,7 +82,7 @@ ansible_network_os=eos
 {% for item in jsondata.Routers %}
 {% for i in jsonmetadata.hosts %}
 {%if item.NodeType is equalto "cumulus" and i.hostname == item.Name %}
-{{item.Name}} ansible_host= {{i.ip}}
+{{item.Name}} ansible_host={{i.ip}}
 {% endif %}
 {% endfor %}
 {% endfor %}
@@ -101,7 +101,7 @@ ansible_connection= local
 {% for item in jsondata.Routers %}
 {% for i in jsonmetadata.hosts %}
 {%if item.NodeType is equalto "panos" and i.hostname == item.Name %}
-{{item.Name}} ansible_host= {{i.ip}}
+{{item.Name}} ansible_host={{i.ip}}
 {% endif %}
 {% endfor %}
 {% endfor %}
@@ -120,7 +120,7 @@ ansible_connection= local
 {% for item in jsondata.Routers %}
 {% for i in jsonmetadata.hosts %}
 {%if item.NodeType is equalto "traffic" and i.hostname == item.Name %}
-{{item.Name}} ansible_host= {{i.ip}}
+{{item.Name}} ansible_host={{i.ip}}
 {% endif %}
 {% endfor %}
 {% endfor %}
@@ -139,7 +139,7 @@ ansible_connection= local
 {% for item in jsondata.Routers %}
 {% for i in jsonmetadata.hosts %}
 {%if item.NodeType is equalto "f5" and i.hostname == item.Name %}
-{{item.Name}} ansible_host= {{i.ip}}
+{{item.Name}} ansible_host={{i.ip}}
 {% endif %}
 {% endfor %}
 {% endfor %}
@@ -158,7 +158,7 @@ ansible_connection= local
 {% for item in jsondata.Routers %}
 {% for i in jsonmetadata.hosts %}
 {%if item.NodeType is equalto "asav" and i.hostname == item.Name %}
-{{item.Name}} ansible_host= {{i.ip}}
+{{item.Name}} ansible_host={{i.ip}}
 {% endif %}
 {% endfor %}
 {% endfor %}

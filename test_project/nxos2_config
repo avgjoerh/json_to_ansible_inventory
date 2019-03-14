@@ -1,0 +1,17 @@
+cdp enable
+hostname nxos2
+int eth1/1
+no switchport
+mac-address 5254.00ff.f641
+ip address 10.1.4.2/30
+no shut
+int eth1/2
+no switchport
+mac-address 5254.00ff.f642
+ip address 10.2.4.2/30
+no shut
+int eth1/3
+no switchport
+mac-address 5254.00ff.f643
+ip address 10.3.4.2/30
+no shut
