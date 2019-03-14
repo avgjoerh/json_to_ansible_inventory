@@ -8,13 +8,13 @@
 {% endfor %}
 {% for i in jsonmetadata.hosts  %}
 {% if i.os is equalto "nxos" and loop.changed(true) %}
-[nxos:vars]
+[nxosv:vars]
 ansible_user= {{i.username }}
 ansible_ssh_pass= {{i.password }}
 host_key_checking= false
 StrictHostKeyChecking= false
 ansible_connection= network_cli
-ansible_network_os=nxos
+ansible_network_os=ios
 {% endif %}
 {% endfor %}
 
