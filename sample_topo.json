@@ -1,120 +1,110 @@
 {
-  "ID": "0db790a0-5d9f-4f3b-9388-a10dff9e56e8",
-  "Name": "sunday1",
-  "Description": "",
+  "ID": "55673b67-e278-49ef-8c38-e5a00104612c",
+  "Name": "2xCSR-2XNXOSv-FullMesh",
+  "Description": "Neptune Testing",
   "Routers": [
     {
-      "ID": "3d319037-c049-495c-a249-974c501bda27",
-      "Name": "sw3",
+      "ID": "511f19b2-fc83-4a9f-8350-90810b083c47",
+      "Name": "csr2",
       "NodeType": "csr",
       "Version": "latest",
-      "X": 293,
-      "Y": 268,
-      "FakeID": 3,
-      "IsReady": false,
-      "TopologyID": "0db790a0-5d9f-4f3b-9388-a10dff9e56e8"
-    },
-    {
-      "ID": "8f18a9ad-61ee-472a-b1c7-f8ad6e10ce08",
-      "Name": "sw2",
-      "NodeType": "ios",
-      "Version": "latest",
-      "X": 366,
-      "Y": 171,
+      "X": 79,
+      "Y": 67,
       "FakeID": 2,
-      "IsReady": false,
-      "TopologyID": "0db790a0-5d9f-4f3b-9388-a10dff9e56e8"
+      "IsReady": true,
+      "TopologyID": "55673b67-e278-49ef-8c38-e5a00104612c"
     },
     {
-      "ID": "fad2af6d-065c-49bf-ab0d-eb16d531d0f9",
-      "Name": "sw1",
+      "ID": "70731d59-c449-47d2-831c-5a46b81e0b90",
+      "Name": "nxosv1",
       "NodeType": "nxosv",
       "Version": "latest",
-      "X": 221,
-      "Y": 173,
+      "X": 230,
+      "Y": 33,
+      "FakeID": 3,
+      "IsReady": true,
+      "TopologyID": "55673b67-e278-49ef-8c38-e5a00104612c"
+    },
+    {
+      "ID": "74c1134e-0392-44c0-b6ce-50ef9ff17be4",
+      "Name": "nxosv2",
+      "NodeType": "nxosv",
+      "Version": "latest",
+      "X": 234,
+      "Y": 176,
+      "FakeID": 4,
+      "IsReady": true,
+      "TopologyID": "55673b67-e278-49ef-8c38-e5a00104612c"
+    },
+    {
+      "ID": "fbe2d4a4-582b-4716-9c0a-fbab74e7f1f8",
+      "Name": "csr1",
+      "NodeType": "csr",
+      "Version": "latest",
+      "X": 64,
+      "Y": 202,
       "FakeID": 1,
-      "IsReady": false,
-      "TopologyID": "0db790a0-5d9f-4f3b-9388-a10dff9e56e8"
+      "IsReady": true,
+      "TopologyID": "55673b67-e278-49ef-8c38-e5a00104612c"
     }
   ],
   "Links": [
     {
-      "ID": "1c38bdcf-3d87-4dad-a90a-1169b846bb5d",
-      "Source": "3",
-      "Target": "2",
-      "FakeID": 3,
-      "TopologyID": "0db790a0-5d9f-4f3b-9388-a10dff9e56e8"
-    },
-    {
-      "ID": "2157f418-3684-47a1-99df-4ffffc8e213d",
-      "Source": "1",
+      "ID": "235a4ec1-7a47-464a-8474-63906f4082f2",
+      "Source": "4",
       "Target": "3",
-      "FakeID": 1,
-      "TopologyID": "0db790a0-5d9f-4f3b-9388-a10dff9e56e8"
+      "FakeID": 6,
+      "TopologyID": "55673b67-e278-49ef-8c38-e5a00104612c"
     },
     {
-      "ID": "2bd37c9c-2dd1-4146-b9b3-db6884a561f1",
+      "ID": "43e96661-eb8b-4744-a0b1-b494f89c2d4d",
+      "Source": "2",
+      "Target": "3",
+      "FakeID": 4,
+      "TopologyID": "55673b67-e278-49ef-8c38-e5a00104612c"
+    },
+    {
+      "ID": "a2687e4f-e54b-4bf5-adb0-5512bb325c37",
+      "Source": "1",
+      "Target": "2",
+      "FakeID": 1,
+      "TopologyID": "55673b67-e278-49ef-8c38-e5a00104612c"
+    },
+    {
+      "ID": "b3a78c42-c172-4ed1-afc8-596a1cc77505",
+      "Source": "4",
+      "Target": "1",
+      "FakeID": 3,
+      "TopologyID": "55673b67-e278-49ef-8c38-e5a00104612c"
+    },
+    {
+      "ID": "dabbc4d8-0063-4929-af9c-6804de7c6b5d",
+      "Source": "2",
+      "Target": "4",
+      "FakeID": 5,
+      "TopologyID": "55673b67-e278-49ef-8c38-e5a00104612c"
+    },
+    {
+      "ID": "fc165b18-534f-41f7-ad4f-118ad2759e2c",
       "Source": "3",
       "Target": "1",
       "FakeID": 2,
-      "TopologyID": "0db790a0-5d9f-4f3b-9388-a10dff9e56e8"
-    },
-    {
-      "ID": "34f49268-2f54-46e4-ab2f-cff6664524c5",
-      "Source": "3",
-      "Target": "2",
-      "FakeID": 8,
-      "TopologyID": "0db790a0-5d9f-4f3b-9388-a10dff9e56e8"
-    },
-    {
-      "ID": "36de553a-6f35-483a-b3c6-0e7bd0e2f568",
-      "Source": "2",
-      "Target": "1",
-      "FakeID": 7,
-      "TopologyID": "0db790a0-5d9f-4f3b-9388-a10dff9e56e8"
-    },
-    {
-      "ID": "7babf25e-2f7b-41ad-8a1a-4a9b0bddce71",
-      "Source": "1",
-      "Target": "2",
-      "FakeID": 5,
-      "TopologyID": "0db790a0-5d9f-4f3b-9388-a10dff9e56e8"
-    },
-    {
-      "ID": "d0d67201-4a39-4f38-8936-6b3172c9bd63",
-      "Source": "3",
-      "Target": "2",
-      "FakeID": 4,
-      "TopologyID": "0db790a0-5d9f-4f3b-9388-a10dff9e56e8"
-    },
-    {
-      "ID": "d2e368f8-a48f-4584-806f-cb6bbd8abb32",
-      "Source": "1",
-      "Target": "2",
-      "FakeID": 6,
-      "TopologyID": "0db790a0-5d9f-4f3b-9388-a10dff9e56e8"
-    },
-    {
-      "ID": "f164db69-68f9-4ea7-a055-b785f36d863f",
-      "Source": "3",
-      "Target": "1",
-      "FakeID": 9,
-      "TopologyID": "0db790a0-5d9f-4f3b-9388-a10dff9e56e8"
+      "TopologyID": "55673b67-e278-49ef-8c38-e5a00104612c"
     }
   ],
   "Settings": {
-    "ID": "a0f19ec9-4ab5-4123-b85d-8e1927055bf4",
-    "TopologyID": "0db790a0-5d9f-4f3b-9388-a10dff9e56e8",
+    "ID": "b0b3eb27-c6c5-4361-b5b3-bc0cadbe5f67",
+    "TopologyID": "55673b67-e278-49ef-8c38-e5a00104612c",
     "ZtpFile": "",
     "Webhook": "",
     "Credential": null
   },
   "Image": "",
-  "OrganizationID": 4,
+  "OrganizationID": 5,
   "Organization": {
-    "ID": 4,
-    "CreatedAt": "2019-03-03T20:44:14.954628Z",
-    "UpdatedAt": "2019-03-04T01:47:00.468601Z",
+    "ID": 5,
+    "CreatedAt": "2019-03-11T14:10:46.39519Z",
+    "UpdatedAt": "2019-03-14T01:32:07.195378Z",
     "DeletedAt": null,
     "Name": "Jose Sanchez - Private",
     "Description": "Your Private Organization. This cannot be deleted.",

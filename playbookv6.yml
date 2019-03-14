@@ -5,16 +5,20 @@
   vars:
     jsondata: "{{ lookup('file','sample_topo.json')|from_json }}"
     jsonmetadata: "{{ lookup('file','sample_metadata.json')|from_json }}"
-    project_name: "test_project_name"
-    project_directory: "/some_project_folder"
+    project_name: "test_project"
+    #project_directory: "/some_project_folder"
     inventory_template_src: "/Users/josesanchez/Qsync/OSI/NetworkCI/json_dict/hosts.j2"
-    inventory_template_dest: "/Users/josesanchez/Qsync/OSI/NetworkCI/json_dict/test_host.ini"
+    inventory_template_dest: "/Users/josesanchez/Qsync/OSI/NetworkCI/json_dict/{{project_name}}/test_host.ini"
     hostvar_template_src:
     hostvar_template_dest:
 
   tasks:
-
 ##///create destination project directory
+      - name: Creating Project Directory
+        file:
+          path: ./{{project_name}}
+          state: directory
+        delegate_to: localhost
 
 ##///flip json to dicts and lists
       - name: Iterate Json -  Device
@@ -80,7 +84,7 @@
 ##///some kinda jinja templating to generate host_var files
       - name: Creating directories
         file:
-          path: ./{{item}}
+          path: ./{{project_name}}/{{item}}
           state: directory
         delegate_to: localhost
         with_items:
@@ -90,5 +94,7 @@
 #      - name: Generate Host_Var files
 #        template: src={{hostvar_template_src}} dest={{hostvar_template_dest}}
 #        delegate_to: localhost
+#        loop:
+
 
 ##///some kinda jinja templating for configuring interface descriptions

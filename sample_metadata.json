@@ -1,9 +1,9 @@
 {
   "hosts": [
     {
-      "hostname": "sw3",
-      "ip": "10.233.66.17",
-      "os": "csr",
+      "hostname": "csr1",
+      "ip": "10.233.66.33",
+      "os": "ios",
       "username": "lab",
       "password": "lab",
       "groups": [
@@ -11,21 +11,31 @@
       ]
     },
     {
-      "hostname": "sw2",
-      "ip": "10.233.64.99",
-      "os": "nxosv",
-      "username": "admin",
-      "password": "cisco.123",
+      "hostname": "csr2",
+      "ip": "10.233.66.32",
+      "os": "ios",
+      "username": "lab",
+      "password": "lab",
       "groups": [
         ""
       ]
     },
     {
-      "hostname": "sw1",
-      "ip": "10.233.65.171",
-      "os": "nxosv",
-      "username": "admin",
-      "password": "cisco.123",
+      "hostname": "nxosv1",
+      "ip": "10.233.65.61",
+      "os": "nxos",
+      "username": "lab",
+      "password": "lab",
+      "groups": [
+        ""
+      ]
+    },
+    {
+      "hostname": "nxosv2",
+      "ip": "10.233.65.62",
+      "os": "nxos",
+      "username": "lab",
+      "password": "lab",
       "groups": [
         ""
       ]
