@@ -81,7 +81,7 @@
         template: src={{inventory_template_src}} dest={{inventory_template_dest}}
         delegate_to: localhost
 
-##///some kinda jinja templating to generate host_var files
+##///some kinda jinja templating to generate host_var files and site.yml playbook
       - name: Creating directories
         file:
           path: ./{{project_name}}/{{item}}
@@ -90,6 +90,7 @@
         with_items:
           - roles
           - host_vars
+          -
 
 #      - name: Generate Host_Var files
 #        template: src={{hostvar_template_src}} dest={{hostvar_template_dest}}
