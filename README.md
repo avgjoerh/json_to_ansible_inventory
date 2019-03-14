@@ -1,4 +1,4 @@
-Given two sets of structured json data ( see samples) , this playbook will convert json dicts to lists, organize hosts into group:vars by os, then match name/hostname values to their corresponding ip addresses, creating an ansible inventory file.
+Given two sets of structured json data ( see samples) , this playbook will convert json data to lists, organize hosts into group:vars by os, then match name/hostname values to their corresponding ip addresses, creating an ansible inventory file.
 
 Please change the vars at the top of the playbook to reflect your directories and whatever changes to file names you want to use:
 
