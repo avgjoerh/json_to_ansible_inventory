@@ -90,6 +90,7 @@
         with_items:
           - roles
           - host_vars
+          - files
 
 #      - name: Generate Host_Var files
 #        template: src={{hostvar_template_src}} dest={{hostvar_template_dest}}

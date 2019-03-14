@@ -1,0 +1,6 @@
+---
+  - name: Push Base Config
+    hosts: csr:nxosv
+    gather_facts: false
+    roles:
+      - base_config
